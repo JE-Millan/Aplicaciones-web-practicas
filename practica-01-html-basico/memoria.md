@@ -16,7 +16,7 @@
 2. Desayuno
 3. Me voy
 
-[Práctica 1](./practica-01-html-basico/memoria.md)
+[Práctica 1](memoria.md)
 
 ![Captura del resultado final](./imagenes/paisaje.webp)
 
