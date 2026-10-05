@@ -12,4 +12,6 @@ Despues se comprueba la version del sistema:
 lsb_release -a
 ```
 *Captura 1:*
-![Captura 1](./imagenes/)
+
+![Captura 1](./imagenes/Captura-1.png)
+
