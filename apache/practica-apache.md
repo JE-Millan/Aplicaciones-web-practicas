@@ -30,7 +30,7 @@ Y se comprueba la versión que se ha instalado:
 ```bash
 apache2 -v
 ```
- #### Pregunta: ####
+ #### Pregunta 1: ####
  *¿Qué paquetes adicionales se han instalado como dependencias?*
  
  Se instalaron: 
@@ -64,5 +64,29 @@ curl -I http://localhost
 
 *Capturas del estado del servicio y de la página por defecto en el navegador:*
 
-![Captura 2](./imagenes/)
+![Captura 2](./imagenes/Captura-2.png)
+
+![Captura 3](./imagenes/Captura-3.png)
+
+#### 3.4. Firewall ####
+```bash
+sudo ufw status
+sudo ufw allow 'Apache'
+```
+**Pregunta 2:**
+
+*¿Qué diferencia hay entre los perfiles Apache, Apache Full y Apache Secure?¿Qué diferencia hay entre los perfiles Apache, Apache Full y Apache Secure?*
+
+- **Apache:** Se usa para conexiones HTTP y los datos que viajan no estan protegidos, solo abre el puerto 80.
+- **Apache Secure:** Se usa para conexiones seguras HTTPS y los datos que viajan estan protegidos y cifrados, solo abre el puerto 443.
+- **Apache Full:** Es la que mas se usa, porque la gente puede entrar de la forma que quieran y el servidor los llevara a la opcion segura, abre el puerto 80 y el 443.
+
+---
+
+## Apartado 4 ##
+
+### Comandos principales de administración ###
+
+Estos son los principales comandos y sus explicaciones:
+
 
