@@ -15,3 +15,6 @@ lsb_release -a
 
 ![Captura 1](./imagenes/Captura-1.png)
 
+---
+
+## Apartado 2 ##
