@@ -11,7 +11,7 @@ Despues se comprueba la version del sistema:
 ```bash
 lsb_release -a
 ```
-*Captura 1:*
+*Captura versión de Ubuntu :*
 
 ![Captura 1](./imagenes/Captura-1.png)
 
@@ -49,12 +49,20 @@ apache2 -v
 
 ### Comprobación del funcionamiento ###
 
-3.1. Estado del servicio
+#### 3.1. Se mira el estado del servicio: ####
+```bash
 sudo systemctl status apache2
-3.2. Puertos en escucha
+```
+#### 3.2. Luego los puertos en escucha: ####
+```bash
 sudo ss -tulpn | grep apache2
-3.3. Prueba desde el terminal y desde el navegador
+```
+#### 3.3. Se prueba desde el terminal y desde el navegador: ####
+```bash
 curl -I http://localhost
+```
 
+*Capturas del estado del servicio y de la página por defecto en el navegador:*
 
+![Captura 2](./imagenes/)
 
