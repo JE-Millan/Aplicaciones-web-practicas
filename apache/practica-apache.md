@@ -68,7 +68,7 @@ curl -I http://localhost
 
 ![Captura 3](./imagenes/Captura-3.png)
 
-#### 3.4. Firewall ####
+#### 3.4. Firewall: ####
 ```bash
 sudo ufw status
 sudo ufw allow 'Apache'
@@ -116,7 +116,7 @@ Cuando por ejemplo se necesita reiniciar pero hay que mantener las conexiones ac
 
 ### Ficheros y directorios importantes ###
 
-Para ver la estructura de configuracion
+Para ver la estructura de configuracion:
 ```bash
 ls -l /etc/apache2/
 ```
@@ -136,11 +136,28 @@ Estas son las distintas rutas y la descripcion de lo que son:
 | /var/log/apache2/access.log | Registro de accesos |
 | /var/log/apache2/error.log | Registro de errores |
 
+Los ficheros de sites-enabled son enlaces simbolicos y se pueden comprobar con este comando:
+```bash
+ls -l /etc/apache2/sites-enabled/
+```
+
 *Captura del contenido de /etc/apache2/ :*
 
+![Captura 4](./imagenes/Captura-4.png)
 
 **Pregunta 3:**
 
 *¿Por qué Apache usa enlaces simbólicos entre los directorios que terminan en las palabras -available y -enabled?*
 
 Usa enlaces simbolicos para evitar que hayan errores, para tenerlo todo bien estructurado y ordenador, y por comodidad 
+
+---
+
+## Apartado 6 ##
+
+### Modificaciones tipicas del servicio ###
+
+Hay que hacer siempre una copia de seguridad antes de modificar un fichero:
+```bash
+sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
+```
