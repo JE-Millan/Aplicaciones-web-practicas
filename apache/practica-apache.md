@@ -89,6 +89,58 @@ sudo ufw allow 'Apache'
 
 Estos son los principales comandos y sus explicaciones:
 
-|-----|-----|
-| h | h |
-|----|----|
+| Comando | Funcion |
+|-----|----|
+| sudo systemctl start apache2 | Inicia el servicio |
+| sudo systemctl stop apache2 |  Detiene el servicio |
+| sudo systemctl restart apache2 | Reinicia (corta conexiones) |
+| sudo systemctl reload apache2 | Recarga la configuración sin cortar conexiones |
+| sudo systemctl enable apache2 | Arranque automático al iniciar el sistema |
+| sudo systemctl disable apache2 | Desactiva el arranque automático |
+| apache2ctl configtest | Comprueba la sintaxis de la configuración |
+| apache2ctl -S | Muestra los sitios (virtual hosts) cargados |
+| apache2ctl -M | Lista los módulos cargados |
+| a2enmod / a2dismod | Activa / desactiva módulos |
+| a2ensite / a2dissite | Activa / desactiva sitios |
+| a2enconf / a2disconf | Activa / desactiva fragmentos de configuración |
+
+**Pregunta 3:**
+
+*¿Cuando conviene usar reload en lugar de restart?*
+
+Cuando por ejemplo se necesita reiniciar pero hay que mantener las conexiones activas.
+
+---
+
+## Apartado 5 ##
+
+### Ficheros y directorios importantes ###
+
+Para ver la estructura de configuracion
+```bash
+ls -l /etc/apache2/
+```
+
+Estas son las distintas rutas y la descripcion de lo que son:
+
+| Ruta | Descripcion |
+|-----|------|
+| /etc/apache2/apache2.conf | Fichero de configuración principal |
+| /etc/apache2/ports.conf | Puertos en los que escucha Apache |
+| /etc/apache2/sites-available/ | Sitios disponibles (definidos, no necesariamente activos) |
+| /etc/apache2/sites-enabled/ | Sitios activos (enlaces simbólicos a sites-available) |
+| /etc/apache2/mods-available/ y mods-enabled/ | Módulos disponibles y activos |
+| /etc/apache2/conf-available/ y conf-enabled/ | Fragmentos de configuración disponibles y activos |
+| /etc/apache2/envvars | Variables de entorno (usuario y grupo de ejecución, etc.) |
+| /var/www/html/ | Directorio raíz por defecto (DocumentRoot) |
+| /var/log/apache2/access.log | Registro de accesos |
+| /var/log/apache2/error.log | Registro de errores |
+
+*Captura del contenido de /etc/apache2/ :*
+
+
+**Pregunta 3:**
+
+*¿Por qué Apache usa enlaces simbólicos entre los directorios que terminan en las palabras -available y -enabled?*
+
+Usa enlaces simbolicos para evitar que hayan errores, para tenerlo todo bien estructurado y ordenador, y por comodidad 
