@@ -161,3 +161,30 @@ Hay que hacer siempre una copia de seguridad antes de modificar un fichero:
 ```bash
 sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
 ```
+
+#### 6.1. Cambiar la página de inicio: ####
+```bash
+echo "<h1>Servidor de TU NOMBRE</h1>" | sudo tee /var/www/html/index.html
+```
+#### 6.2. Cambiar el puerto de escucha *(por ejemplo, al 8080)*: ####
+Para cambiar el puerto hay que editar /etc/apache2/ports.conf y el VirtualHost de 000-default.conf:
+```bash
+sudo nano /etc/apache2/ports.conf
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+Despues hay que cambiar Listen 80 por Listen 8080 y <VirtualHost *:80> por <VirtualHost *:8080>. Después:
+```bash
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+curl -I http://localhost:8080
+```
+Y cuando se termina se puede dejar de nuevo en el puerto 80.
+
+#### 6.3. Definir el nombre del servidor *(elimina el aviso "Could not reliably determine the server's fully qualified domain name")*: ####
+```bash
+echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/servername.conf
+sudo a2enconf servername
+sudo systemctl reload apache2
+```
+#### 6.4. Cambiar el correo del administrador *(ServerAdmin en el fichero del sitio)*: ####
+#### 6.5. Personalizar una página de error *(por ejemplo, 404)* con la directiva ErrorDocument: ####
