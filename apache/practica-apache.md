@@ -89,4 +89,6 @@ sudo ufw allow 'Apache'
 
 Estos son los principales comandos y sus explicaciones:
 
-
+|-----|-----|
+| h | h |
+|----|----|
