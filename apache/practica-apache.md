@@ -163,7 +163,8 @@ sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
 ```
 
 *Captura del comando:*
-![Captura 5](./imagenes/)
+
+![Captura 5](./imagenes/Captura-5.png)
 
 **Pregunta 4:**
 
@@ -171,18 +172,28 @@ sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
 
 Tiene la configuracion importante del servidor web de Apache.
 
+
 *Captura del contenido del fichero:*
-![Captura 5](./imagenes/)
+
+![Captura 6](./imagenes/Captura-6.png)
 
 #### 6.1. Cambiar la página de inicio: ####
 ```bash
 echo "<h1>Servidor de TU NOMBRE</h1>" | sudo tee /var/www/html/index.html
 ```
+
 **Pregunta 5:**
 
 *¿Qué hace esta orden?*
 
-Cambia lo que aparece en la pagina web, entonces aparecera un texto en el que pone ***Servidor de john***.
+Cambia lo que aparece en la pagina web, entonces aparecera un texto en el que pone **Servidor de john**.
+
+
+*Captura del contenido del fichero:*
+
+![Captura 7](./imagenes/Captura-7.png)
+
+
 #### 6.2. Cambiar el puerto de escucha *(por ejemplo, al 8080)*: ####
 Para cambiar el puerto hay que editar /etc/apache2/ports.conf y el VirtualHost de 000-default.conf:
 ```bash
