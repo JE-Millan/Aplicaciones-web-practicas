@@ -162,15 +162,27 @@ Hay que hacer siempre una copia de seguridad antes de modificar un fichero:
 sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
 ```
 
+*Captura del comando:*
+![Captura 5](./imagenes/)
+
+**Pregunta 4:**
+
+*¿qué contenido tiene el fichero? Explícalo con tus palabras*
+
+Tiene la configuracion importante del servidor web de Apache.
+
+*Captura del contenido del fichero:*
+![Captura 5](./imagenes/)
+
 #### 6.1. Cambiar la página de inicio: ####
 ```bash
 echo "<h1>Servidor de TU NOMBRE</h1>" | sudo tee /var/www/html/index.html
 ```
-**Pregunta 4:**
+**Pregunta 5:**
 
 *¿Qué hace esta orden?*
 
-Cambia el nombre que aparece en la pagina web
+Cambia lo que aparece en la pagina web, entonces aparecera un texto en el que pone ***Servidor de john***.
 #### 6.2. Cambiar el puerto de escucha *(por ejemplo, al 8080)*: ####
 Para cambiar el puerto hay que editar /etc/apache2/ports.conf y el VirtualHost de 000-default.conf:
 ```bash
