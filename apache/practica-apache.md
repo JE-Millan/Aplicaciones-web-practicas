@@ -166,6 +166,11 @@ sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
 ```bash
 echo "<h1>Servidor de TU NOMBRE</h1>" | sudo tee /var/www/html/index.html
 ```
+**Pregunta 4:**
+
+*¿Qué hace esta orden?*
+
+Cambia el nombre que aparece en la pagina web
 #### 6.2. Cambiar el puerto de escucha *(por ejemplo, al 8080)*: ####
 Para cambiar el puerto hay que editar /etc/apache2/ports.conf y el VirtualHost de 000-default.conf:
 ```bash
@@ -180,7 +185,7 @@ curl -I http://localhost:8080
 ```
 Y cuando se termina se puede dejar de nuevo en el puerto 80.
 
-#### 6.3. Definir el nombre del servidor *(elimina el aviso "Could not reliably determine the server's fully qualified domain name")*: ####
+#### 6.3. Definir el nombre del servidor *(hay que eliminar el aviso "Could not reliably determine the server's fully qualified domain name")*: ####
 ```bash
 echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/servername.conf
 sudo a2enconf servername
