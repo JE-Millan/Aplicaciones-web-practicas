@@ -182,6 +182,11 @@ Tiene la configuracion importante del servidor web de Apache.
 echo "<h1>Servidor de TU NOMBRE</h1>" | sudo tee /var/www/html/index.html
 ```
 
+*Captura del comando hecho:*
+
+![Captura 7](./imagenes/Captura-7A.png)
+
+
 **Pregunta 5:**
 
 *¿Qué hace esta orden?*
@@ -189,10 +194,9 @@ echo "<h1>Servidor de TU NOMBRE</h1>" | sudo tee /var/www/html/index.html
 Cambia lo que aparece en la pagina web, entonces aparecera un texto en el que pone **Servidor de john**.
 
 
-*Captura del contenido del fichero:*
+*Captura de como aparece en la pagina web:*
 
-![Captura 7](./imagenes/Captura-7.png)
-
+![Captura 7](./imagenes/Captura-7B.png)
 
 #### 6.2. Cambiar el puerto de escucha *(por ejemplo, al 8080)*: ####
 Para cambiar el puerto hay que editar /etc/apache2/ports.conf y el VirtualHost de 000-default.conf:
