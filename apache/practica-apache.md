@@ -184,7 +184,7 @@ echo "<h1>Servidor de TU NOMBRE</h1>" | sudo tee /var/www/html/index.html
 
 *Captura del comando hecho:*
 
-![Captura 7](./imagenes/Captura-7A.png)
+![Captura 7A](./imagenes/Captura-7A.png)
 
 
 **Pregunta 5:**
@@ -196,15 +196,26 @@ Cambia lo que aparece en la pagina web, entonces aparecera un texto en el que po
 
 *Captura de como aparece en la pagina web:*
 
-![Captura 7](./imagenes/Captura-7B.png)
+![Captura 7B](./imagenes/Captura-7B.png)
 
 #### 6.2. Cambiar el puerto de escucha *(por ejemplo, al 8080)*: ####
-Para cambiar el puerto hay que editar /etc/apache2/ports.conf y el VirtualHost de 000-default.conf:
+Para cambiar el puerto hay que editar /etc/apache2/ports.conf y el VirtualHost de 000-default.conf, hay que cambiar Listen 80 por Listen 8080 y <VirtualHost *:80> por <VirtualHost *:8080>.:
 ```bash
 sudo nano /etc/apache2/ports.conf
 sudo nano /etc/apache2/sites-available/000-default.conf
 ```
-Despues hay que cambiar Listen 80 por Listen 8080 y <VirtualHost *:80> por <VirtualHost *:8080>. Después:
+
+*Capturas de los puertos cambiados en cada fichero:*
+
+![Captura 8B](./imagenes/Captura-8B.png)
+
+![Captura 8A](./imagenes/Captura-8A.png)
+
+ 
+
+
+
+Después :
 ```bash
 sudo apache2ctl configtest
 sudo systemctl reload apache2
