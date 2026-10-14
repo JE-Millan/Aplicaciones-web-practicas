@@ -238,4 +238,10 @@ sudo systemctl reload apache2
 ![Captura-10](./imagenes/Captura-10.png)
 
 #### 6.4. Cambiar el correo del administrador *(ServerAdmin en el fichero del sitio)*: ####
+
+*Captura del correo cambiado:*
+
+![Captura-11](./imagenes/Captura-11.png)
+
+
 #### 6.5. Personalizar una página de error *(por ejemplo, 404)* con la directiva ErrorDocument: ####
