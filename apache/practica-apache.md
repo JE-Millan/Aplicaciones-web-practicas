@@ -396,16 +396,23 @@ sudo find /var/www/sitio1 -type f -exec chmod 644 {} \;
 
 Ahora pruebo qué ocurre al poner chmod 000 a index.html (error 403) y consulto el error.log. Después restaurare los permisos.
 
+
 *Captura del error 403 y del log:*
 
-![Captura-14](./imagenes/Captura-14.png)
+![Captura-14A](./imagenes/Captura-14A.png)
+![Captura-14B](./imagenes/Captura-14B.png)
 
 
-Explica en la memoria:
+### Explicaciones ###
+
 - **Significado 755 y 644:**
+
+El 755 da control total al dueño de la carpeta y los demas solo puede entrar y verla, y el 644 permite al dueño modificar el archivo y el resto solo puede leerlo.
 
 - **Por qué nunca se deben usar permisos 777 en un servidor web:**
 
+Porque da todos los permisos a cualquier usuario, y pueden hackear la web metiendo un virus.
+
 - **Por qué el contenido web no debe pertenecer a root ni ser escribible por todos:**
 
-
+Porque si perteneciera a root un atacante controlaría podria controlar toda la máquina virtual, y si todos pudieran escribir, cualquiera podría subir archivos que podrian hacer daño.
