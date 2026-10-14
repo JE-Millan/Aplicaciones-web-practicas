@@ -211,9 +211,6 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 
 ![Captura 8B](./imagenes/Captura-8B.png)
 
- 
-
-
 
 Después :
 ```bash
@@ -223,11 +220,22 @@ curl -I http://localhost:8080
 ```
 Y cuando se termina se puede dejar de nuevo en el puerto 80.
 
+
+*Captura de los tres comandos:*
+
+![Captura-9](./imagenes/Captura-9.png)
+
+
 #### 6.3. Definir el nombre del servidor *(hay que eliminar el aviso "Could not reliably determine the server's fully qualified domain name")*: ####
 ```bash
 echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/servername.conf
 sudo a2enconf servername
 sudo systemctl reload apache2
 ```
+
+*Captura de los comandos usandolos para eliminar el aviso:*
+
+![Captura-10](./imagenes/Captura-10.png)
+
 #### 6.4. Cambiar el correo del administrador *(ServerAdmin en el fichero del sitio)*: ####
 #### 6.5. Personalizar una página de error *(por ejemplo, 404)* con la directiva ErrorDocument: ####
