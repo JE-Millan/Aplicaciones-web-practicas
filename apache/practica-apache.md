@@ -207,9 +207,9 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 
 *Capturas de los puertos cambiados en cada fichero:*
 
-![Captura 8B](./imagenes/Captura-8B.png)
-
 ![Captura 8A](./imagenes/Captura-8A.png)
+
+![Captura 8B](./imagenes/Captura-8B.png)
 
  
 
