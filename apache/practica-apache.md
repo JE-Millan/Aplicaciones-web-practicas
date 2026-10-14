@@ -305,9 +305,67 @@ Esta es una tabla con 8 módulos y cada función que tienen:
 
 *¿Qué ocurre si desactivas un módulo del que depende otro?*
 
-Mostrara un aviso advirtiendo cuando ejecutas el comando para desactivarlo y si intentas reiniciar fallara el servidor apache, y si pones el comando **sudo apache2ctl configtest** pondra un error diciendo que no reconoce luna directiva o funcion porque no esta el modulo base
+Mostrara un aviso advirtiendo cuando ejecutas el comando para desactivarlo y si intentas reiniciar fallara el servidor apache, y si pones el comando **sudo apache2ctl configtest** pondra un error diciendo que no reconoce luna directiva o funcion porque no esta el modulo base.
 
 ## Apartado 8 ##
 
 ### Varios sitios en un mismo servidor (Virtual Hosts) ###
 
+Vamos a crear dos sitios: sitio1.local y sitio2.local.
+
+#### 8.1. Comandos para crear los directorios y páginas: ####
+```bash
+sudo mkdir -p /var/www/sitio1 /var/www/sitio2
+echo "<h1>Bienvenido a SITIO 1</h1>" | sudo tee /var/www/sitio1/index.html
+echo "<h1>Bienvenido a SITIO 2</h1>" | sudo tee /var/www/sitio2/index.html
+```
+#### 8.2. Para crear los ficheros de configuración: ####
+```bash
+sudo nano /etc/apache2/sites-available/sitio1.conf
+<VirtualHost *:80>
+    ServerName sitio1.local
+    ServerAdmin admin@sitio1.local
+    DocumentRoot /var/www/sitio1
+
+    <Directory /var/www/sitio1>
+        Options -Indexes +FollowSymLinks
+        AllowOverride None
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/sitio1_error.log
+    CustomLog ${APACHE_LOG_DIR}/sitio1_access.log combined
+</VirtualHost>
+```
+
+Esto se repite para sitio2.conf cambiando los nombres y rutas.
+
+#### 8.3. Activar los sitios y desactivar el de por defecto: ####
+```bash
+sudo a2ensite sitio1.conf sitio2.conf
+sudo a2dissite 000-default.conf
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+apache2ctl -S
+```
+
+#### 8.4. Resolución de nombres. Se añade en /etc/hosts (del servidor y, si puedes, del equipo cliente): ####
+```bash
+127.0.0.1   sitio1.local sitio2.local
+```
+
+#### 8.5. Pruebas #### 
+```bash
+curl http://sitio1.local
+curl http://sitio2.local
+```
+
+*Capturas de las pruebas de los dos sitios y de la salida de apache2ctl -S:*
+![Captura-13A](./imagenes/Captura-13A.png)
+![Captura-13B](./imagenes/Captura-13B.png)
+
+**Pregunta 8:**
+
+*¿Qué diferencia hay entre virtual hosts basados en nombre y basados en IP? ¿Cuál has usado?*
+
+La diferencia es que los basados en nombre tienen solo una IP para todo el servidor y Apache enseña la pagina cuando pones su nombre de dominio, y los basados en IP son una IP por cada pagina y para buscar la pagina hay que poner la IP, en sitio1 y sitio2 he usado basados en nombre porque las paginas tienen las mismas IP y Apache las identifica por el nombre.
