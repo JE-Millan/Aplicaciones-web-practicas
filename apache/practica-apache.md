@@ -245,3 +245,69 @@ sudo systemctl reload apache2
 
 
 #### 6.5. Personalizar una página de error *(por ejemplo, 404)* con la directiva ErrorDocument: ####
+
+Para hacerlo se crea una pagina en la que ponga un mensaje de error y despues en la configuracion se añade **ErrorDocument 404 /(nombre del archivo de la pagina de error)** y se guardan los cambios, los comando que se usan son:
+```bash
+sudo nano /var/www/html/error.html
+echo "<h1>Error 404: No se ha encontado la practica</h1> | sudo tee /var/www/html/error.html
+sudo nano /etc/apache2/sites-available/000-default.conf
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+```
+
+*Capturas del proceso para crear la pagina de error:*
+
+![Captura-12A](./imagenes/Captura-12A.png)
+![Captura-12B](./imagenes/Captura-12B.png)
+![Captura-12C](./imagenes/Captura-12C.png)
+![Captura-12D](./imagenes/Captura-12D.png)
+
+
+*Captura de la pagina de error:*
+
+![Captura-12E](./imagenes/Captura-12E.png)
+
+
+## Apartado 7 ##
+
+### Módulos de Apache ###
+
+Apache funciona por módulos que se cargan según la necesidad, se pueden ver con:
+```bash
+apache2ctl -M
+ls /etc/apache2/mods-available/
+```
+
+Con estos comandos se activan para comprobar algunos módulos habituales:
+```bash
+sudo a2enmod rewrite
+sudo a2enmod headers
+sudo a2enmod ssl
+sudo systemctl restart apache2
+apache2ctl -M | grep -E "rewrite|headers|ssl"
+```
+
+Esta es una tabla con 8 módulos y cada función que tienen:
+
+| Módulo | Función |
+|---------|----------|
+| mod_rewrite | Reescritura de URL | 
+| mod_headers | Manipulación de cabeceras HTTP | 
+| mod_ssl | Soporte HTTPS | 
+| mod_dir | Gestión de ficheros índice (index.html) | 
+| mod_alias | Redirecciones y alias de rutas | 
+| mod_auth_basic | Autenticación básica | 
+| mod_status | Página de estado del servidor | 
+| mod_php / PHP-FPM | Ejecución de PHP (opcional) | 
+
+
+**Pregunta 6:**
+
+*¿Qué ocurre si desactivas un módulo del que depende otro?*
+
+Mostrara un aviso advirtiendo cuando ejecutas el comando para desactivarlo y si intentas reiniciar fallara el servidor apache, y si pones el comando **sudo apache2ctl configtest** pondra un error diciendo que no reconoce luna directiva o funcion porque no esta el modulo base
+
+## Apartado 8 ##
+
+### Varios sitios en un mismo servidor (Virtual Hosts) ###
+
