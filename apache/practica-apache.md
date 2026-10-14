@@ -267,6 +267,7 @@ sudo systemctl reload apache2
 
 ![Captura-12E](./imagenes/Captura-12E.png)
 
+---
 
 ## Apartado 7 ##
 
@@ -306,6 +307,8 @@ Esta es una tabla con 8 módulos y cada función que tienen:
 *¿Qué ocurre si desactivas un módulo del que depende otro?*
 
 Mostrara un aviso advirtiendo cuando ejecutas el comando para desactivarlo y si intentas reiniciar fallara el servidor apache, y si pones el comando **sudo apache2ctl configtest** pondra un error diciendo que no reconoce luna directiva o funcion porque no esta el modulo base.
+
+---
 
 ## Apartado 8 ##
 
@@ -361,11 +364,48 @@ curl http://sitio2.local
 ```
 
 *Capturas de las pruebas de los dos sitios y de la salida de apache2ctl -S:*
-![Captura-13A](./imagenes/Captura-13A.png)
-![Captura-13B](./imagenes/Captura-13B.png)
 
-**Pregunta 8:**
+![Captura-13B](./imagenes/Captura-13B.png)
+![Captura-13A](./imagenes/Captura-13A.png)
+
+**Pregunta 7:**
 
 *¿Qué diferencia hay entre virtual hosts basados en nombre y basados en IP? ¿Cuál has usado?*
 
 La diferencia es que los basados en nombre tienen solo una IP para todo el servidor y Apache enseña la pagina cuando pones su nombre de dominio, y los basados en IP son una IP por cada pagina y para buscar la pagina hay que poner la IP, en sitio1 y sitio2 he usado basados en nombre porque las paginas tienen las mismas IP y Apache las identifica por el nombre.
+
+---
+
+## Apartado 9 ##
+
+### Permisos y propietarios ###
+
+Apache se ejecuta con el usuario www-data. Se comprueba con:
+```bash
+ps aux | grep apache2
+grep -E "APACHE_RUN_(USER|GROUP)" /etc/apache2/envvars
+ls -ld /var/www/sitio1 /var/www/sitio1/index.html
+```
+
+Aplicamos una política de permisos razonable:
+```bash
+sudo chown -R www-data:www-data /var/www/sitio1
+sudo find /var/www/sitio1 -type d -exec chmod 755 {} \;
+sudo find /var/www/sitio1 -type f -exec chmod 644 {} \;
+```
+
+Ahora pruebo qué ocurre al poner chmod 000 a index.html (error 403) y consulto el error.log. Después restaurare los permisos.
+
+*Captura del error 403 y del log:*
+
+![Captura-14](./imagenes/Captura-14.png)
+
+
+Explica en la memoria:
+- **Significado 755 y 644:**
+
+- **Por qué nunca se deben usar permisos 777 en un servidor web:**
+
+- **Por qué el contenido web no debe pertenecer a root ni ser escribible por todos:**
+
+
