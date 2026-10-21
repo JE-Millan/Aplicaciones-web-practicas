@@ -28,6 +28,7 @@ sudo apt update
 sudo apt upgrade -y
 systemctl is-active apache2
 ```
-*Captura de la respuesta de **systemctl is-active apache2***
-![Captura Mariadb 1](./practica-mariadb/imagenes/MariaDB-1.png)
+*Captura de la respuesta de **systemctl is-active apache2***:
+
+![Captura Mariadb 1](/practica-mariadb/imagenes/MariaDB-1.png)
 
