@@ -112,10 +112,27 @@ Estos comandos se usan para manejar el servicio y su funcion:
 
 ### ¿Que pasa si MariaDB esta parado? ###
 
-Pregunta:
+Ahora se va a parar MariaDB y en el estado pondrá inactive, se comprueba que ocurre al intentar entrar en la base de datos: 
+```bash
+sudo systemctl stop mariadb
+systemctl is-active mariadb
+sudo mariadb
+```
 
-Si WordPress no pudiera conectar con la base de datos, ¿qué dos comandos de este apartado usarías
-para saber si el problema es que MariaDB está parado?
+>Aparecerá este error
+```bash
+ERROR 2002 (HY000): Can't connect to local server through socket '/run/mysqld/mysqld.sock' (2)
+```
+
+El error significa que no puede conectar con MariaDB porque no está en marcha, para volver a arrancarlo hay que poner:
+```bash
+sudo systemctl start mariadb
+systemctl is-active mariadb
+```
+#### Pregunta: ####
+
+**Si WordPress no pudiera conectar con la base de datos, ¿qué dos comandos de este apartado usarías
+para saber si el problema es que MariaDB está parado?**
 
 -Usaria los comandos **sudo mariadb** para ver si se puede acceder y **systemctl is-active mariadb** para ver si esta activo o si no lo esta.
 
