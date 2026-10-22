@@ -7,7 +7,7 @@ John Eric Millan Cobacho
 ### Curso: ###
 2º SMX
 
-##### Fecha: 16/10/2026 #####
+##### Fecha: 22/10/2026 #####
 
 ---
 ---
