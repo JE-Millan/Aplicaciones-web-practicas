@@ -148,10 +148,70 @@ para saber si el problema es que MariaDB está parado?*
 
 ### Instalacion de PHP  ###
 
-Con este comando 
+Con el primer comando se instala el PHP y las piezas que necesita el WordPress, y con el segundo se puede ver la version:
+```bash
+sudo apt install php libapache2-mod-php php-mysql php-curl php-gd php-mbstring php-xml php-zip php-intl -y
+php -v 
+```
+Cada paquete sirve para:
+| Paquete | Funcion |
+|-----|------|
+| php | El lenguaje PHP |
+| libapache2-mod-php | Permite a Apache ejecutar PHP |
+| php-mysql | Permite a PHP hablar con MariaDB (imprescindible) |
+| php-curl | Conexiones a otros servidores (actualizaciones, plugins) |
+| php-gd | Tratamiento de imágenes |
+| php-mbstring | Manejo de textos con tildes y caracteres especiales |
+| php-xml | Lectura y escritura de ficheros XML |
+| php-zip | Instalación y actualización de plugins y temas |
+| php-intl | Idiomas y formatos regionales |
 
-Pregunta Apartado 6:
+Luego hay que reinciar Apache y comprobar que PHP ha cargado, con el segundo comando se vera `mpm_perfork_module` y  `php_module`:
+```bash
+sudo systemctl restart apache2
+sudo apache2ctl -M | grep -E "mpm|php"
+```
 
-¿Por qué es peligroso dejar info.php en un servidor real? ¿Para qué sirve el paquete php-mysql?
+Con este comando se puede comprobar si PHP puede hablar con MariaDB, aparecera `mysqli`, `mysqlnd` y `pdo_mysql`, es lo que usa WordPress para conectarse a la base de datos:
+```bash
+php -m | grep -i mysql
+```
+
+Con este comando se comprueba si Apache puede ejecutar PHP:
+```bash
+echo '<?php phpinfo();' | sudo tee /var/www/html/info.php
+```
+Poniendo `http://192.168.56.25/info.php` debera de salir en mi caso una pagina morada con la version de PHP.
+
+
+*Capturas del `php -v`, de los modulos y de la pagina:*
+
+![Captura Mariadb 6A](./imagenes/MariaDB-6A.png)
+![Captura Mariadb 6B](./imagenes/MariaDB-6B.png)
+![Captura Mariadb 6C](./imagenes/MariaDB-6C.png)
+
+**Pregunta 2:**
+
+*¿Por qué es peligroso dejar info.php en un servidor real? ¿Para qué sirve el paquete php-mysql?*
 
 - Es peligroso dejarlo porque hay informacion de la configuracion del servidor, *php-mysql* es como un puente de comunicación entre MariaDB o MySQL y PHP.
+
+---
+
+## Apartado 7 ##
+
+### Comprobacion final  ###
+
+Se comprueba que MariaDB y Apache estan en active los dos y funcionan correctamente:
+```bash
+systemctl is-active apache2 mariadb
+php -v
+```
+
+Tendra este estado:
+| Pieza | del LAMP | Programa Estado |
+|------|-------|------|
+| Linux | Ubuntu 24.04 | Instalado |
+| Apache | Apache2 | Funcionando |
+| MariaDB | MariaDB 10.11 | Funcionando |
+| PHP | PHP 8.3 | Funcionando y preparado para MariaDB |
