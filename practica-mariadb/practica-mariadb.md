@@ -129,12 +129,26 @@ El error significa que no puede conectar con MariaDB porque no está en marcha, 
 sudo systemctl start mariadb
 systemctl is-active mariadb
 ```
-#### Pregunta: ####
 
-**Si WordPress no pudiera conectar con la base de datos, ¿qué dos comandos de este apartado usarías
-para saber si el problema es que MariaDB está parado?**
+*Captura del error y la recuperación:*
+
+![Captura Mariadb 5A](./imagenes/MariaDB-5A.png)
+![Captura Mariadb 5B](./imagenes/MariaDB-5B.png)
+
+**Pregunta 1:**
+
+*Si WordPress no pudiera conectar con la base de datos, ¿qué dos comandos de este apartado usarías
+para saber si el problema es que MariaDB está parado?*
 
 -Usaria los comandos **sudo mariadb** para ver si se puede acceder y **systemctl is-active mariadb** para ver si esta activo o si no lo esta.
+
+---
+
+## Apartado 6 ##
+
+### Instalacion de PHP  ###
+
+Con este comando 
 
 Pregunta Apartado 6:
 
