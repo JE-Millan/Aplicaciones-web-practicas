@@ -150,7 +150,7 @@ Tabla con la función de cada cosa:
 
 ### Descargar e instalar los ficheros de WordPress ###
 
-#### 4.1 Descarga y descompresión ####
+#### Descarga y descompresión ####
 Descargamos el archivo comprimido de WordPress en la carpeta `/tmp` y lo descomprimimos:
 ```bash
 sudo apt install wget -y
@@ -160,7 +160,7 @@ tar -xzf latest.tar.gz
 ls wordpress
 ```
 
-#### 4.2 Colocación en la carpeta del servidor ####
+#### Colocación en la carpeta del servidor ####
 Borramos la página por defecto de Apache y copiamos los ficheros de WordPress a la carpeta `/var/www/html`:
 ```bash
 sudo rm /var/www/html/index.html
@@ -169,7 +169,7 @@ rm -r /tmp/wordpress /tmp/latest.tar.gz
 ls /var/www/html
 ```
 
-#### 4.3 Asignación de permisos ####
+#### Asignación de permisos ####
 Cambiamos el propietario a **www-data** y ajustamos los permisos para carpetas y archivos:
 ```bash
 sudo chown -R www-data:www-data /var/www/html
@@ -185,7 +185,8 @@ drwxr-xr-x 5 www-data www-data 4096 Oct 28 09:00 /var/www/html
 
 *Captura de la carpeta y los permisos de WordPress:*
 
-![Captura WordPress 4](./imagenes/WordPress-4.png)
+![Captura WordPress 4A](./imagenes/Word-4A.png)
+![Captura WordPress 4B](./imagenes/Word-4B.png)
 
 **Pregunta 4:**
 
@@ -206,25 +207,47 @@ drwxr-xr-x 5 www-data www-data 4096 Oct 28 09:00 /var/www/html
 
 Entramos en la IP del servidor desde el navegador `http://192.168.56.25` para completar la instalación con la parte gráfica:
 
-| Paso | Pantalla | Funcion |
-|-----|------|------|
-| 1 | Idioma | Seleccionamos Español y le damos a continuar |
-| 2 | Bienvenida | Pulsamos en ¡Vamos a ello! |
-| 3 | Base de datos | Ponemos wordpress, wp_user y la contraseña creada |
-| 4 | Confirmación | Pulsamos en Iniciar la instalación |
-| 5 | Información del sitio | Ponemos el título del sitio, usuario administrador y correo |
-| 6 | Éxito | Iniciamos sesión con la cuenta de administrador creada |
+| Pantalla | Que hacer |
+|-----|------|
+| 1. Idioma | Seleccionamos Español y le damos a continuar |
+| 2. Bienvenida | Pulsamos en ¡Vamos a ello! |
+| 3. Base de datos | Ponemos wordpress, wp_user y la contraseña creada |
+| 4. Confirmación | Pulsamos en Iniciar la instalación |
+| 5. Información del sitio | Ponemos el título del sitio, usuario administrador y correo |
+| 6. Éxito | Iniciamos sesión con la cuenta de administrador creada |
+
+### Pantalla 3: datos de la base de datos ###
+
+| Campo | Qué escribir |
+|-----|------|
+| Nombre de la base de datos | wordpress |
+| Nombre de usuario | wp_user |
+| Contraseña | ClaveSegura_2026 |
+| Servidor de la base de datos | localhost |
+| Prefijo de tabla | wp_ |
+
+### Pantalla 5: datos de tu sitio ###
+
+| Campo | Qué escribir |
+|------|-----|
+| Título del sitio | El que se prefiera (por ejemplo, "Mi primer WordPress") |
+| Nombre de usuario | Tu nombre (no hay que usar admin, es el primero que prueban los atacantes) |
+| Contraseña | Una fuerte; WordPress te propone una. Apúntala en un sitio privado |
+| Tu correo electrónico | El tuyo, o uno de práctica como tunombre@ejemplo.local |
+| Visibilidad en motores de búsqueda | Marcar Disuadir a los motores de búsqueda (es un sitio de prácticas) |
+
 
 *Capturas de los datos de la base de datos, datos del sitio y del panel de administración:*
 
-![Captura WordPress 5A](./imagenes/WordPress-5A.png)
-![Captura WordPress 5B](./imagenes/WordPress-5B.png)
+![Captura WordPress 5A](./imagenes/Word-5A.png)
+![Captura WordPress 5B](./imagenes/Word-5B.png)
+![Captura WordPress 5B](./imagenes/Word-5C.png)
 
 **Pregunta 5:**
 
 *¿Qué partes de la instalación has hecho en la terminal y cuáles en el navegador? ¿Por qué el servidor no necesita tener interfaz gráfica?*
 
-- En la terminal hemos realizado la preparación del servidor, creación de la base de datos, descarga de WordPress y asignación de permisos. En el navegador hemos introducido los datos del sitio y creado el usuario administrador. El servidor no necesita interfaz gráfica porque solo envía código PHP e hipertexto; es nuestro propio navegador en el cliente el que dibuja las páginas visuales.
+-En la terminal hemos realizado la preparación del servidor, creación de la base de datos, descarga de WordPress y asignación de permisos. En el navegador hemos introducido los datos del sitio y creado el usuario administrador. El servidor no necesita interfaz gráfica porque solo envía código PHP e hipertexto, es nuestro propio navegador en el cliente el que dibuja las páginas visuales.
 
 ---
 
@@ -236,37 +259,28 @@ Publicamos una entrada de prueba en la web y comprobamos desde la terminal que s
 ```bash
 sudo mariadb wordpress -e "SHOW TABLES;"
 ```
+Se vera la lista de tablas que WordPress creó que son unas 12
 
->Aparecerá el listado de tablas de WordPress:
-```bash
-+-----------------------+
-| Tables_in_wordpress   |
-+-----------------------+
-| wp_commentmeta        |
-| wp_comments           |
-| wp_links              |
-| wp_options            |
-| wp_postmeta           |
-| wp_posts              |
-| wp_termmeta           |
-| wp_terms              |
-| wp_term_relationships |
-| wp_term_taxonomy      |
-| wp_usermeta           |
-| wp_users              |
-+-----------------------+
-```
+### Dónde está cada cosa: ###
+
+| Que | Donde |
+|----|------|
+| Los ficheros de WordPress | /var/www/html/ |
+| La conexión con la base de datos | /var/www/html/wp-config.php (no lo compartas nunca: contiene la contraseña) |
+| Temas, plugins e imágenes subidas | /var/www/html/wp-content/ (carpetas themes, plugins y uploads) |
+| Las entradas, usuarios y ajustes | En la base de datos wordpress de MariaDB |
+
 
 *Captura de la entrada publicada y de las tablas de la base de datos:*
 
-![Captura WordPress 6A](./imagenes/WordPress-6A.png)
-![Captura WordPress 6B](./imagenes/WordPress-6B.png)
+![Captura WordPress 6A](./imagenes/Word-6A.png)
+![Captura WordPress 6B](./imagenes/Word-6B.png)
 
 **Pregunta 6:**
 
 *¿Dónde guarda WordPress las entradas que escribes: en ficheros del servidor o en la base de datos? ¿Cómo lo has comprobado?*
 
-- Las guarda en la base de datos, exactamente dentro de la tabla **wp_posts**. Lo hemos comprobado revisando las tablas creadas en MariaDB con el comando **SHOW TABLES;**.
+-Las guarda en la base de datos, exactamente dentro de la tabla **wp_posts**. Lo hemos comprobado revisando las tablas creadas en MariaDB con el comando **SHOW TABLES;**.
 
 ---
 
@@ -297,7 +311,8 @@ No syntax errors detected in /var/www/html/wp-config.php
 
 *Captura de las líneas dentro de wp-config.php y de la verificación de sintaxis:*
 
-![Captura WordPress 7](./imagenes/WordPress-7.png)
+![Captura WordPress 7A](./imagenes/Word-7A.png)
+![Captura WordPress 7B](./imagenes/Word-7B.png)
 
 ---
 
@@ -305,7 +320,8 @@ No syntax errors detected in /var/www/html/wp-config.php
 
 ### Dos ajustes para trabajar cómodamente ###
 
-#### 8.1 Direcciones "bonitas" (Enlaces permanentes) ####
+#### Direcciones "bonitas" (Enlaces permanentes) ####
+
 Para que funcionen los enlaces permanentes sin error 404, permitimos a Apache leer el fichero `.htaccess`:
 ```bash
 sudo nano /etc/apache2/conf-available/wordpress.conf
@@ -326,7 +342,8 @@ sudo apache2ctl configtest
 sudo systemctl restart apache2
 ```
 
-#### 8.2 Subir el límite de tamaño de subida ####
+#### Subir el límite de tamaño de subida ####
+
 Para poder subir ficheros grandes de hasta 64 MB configuramos PHP:
 ```bash
 printf 'upload_max_filesize = 64M\npost_max_size = 64M\n' | sudo tee /etc/php/8.3/apache2/conf.d/99-wordpress.ini
@@ -335,13 +352,15 @@ sudo systemctl restart apache2
 
 *Captura de la configuración de Apache y del tamaño máximo de subida en el panel:*
 
-![Captura WordPress 8](./imagenes/WordPress-8.png)
+![Captura WordPress 8A](./imagenes/Word-8A.png)
+![Captura WordPress 8B](./imagenes/Word-8B.png)
+![Captura WordPress 8C](./imagenes/Word-8C.png)
 
 **Pregunta 8:**
 
 *¿Por qué las direcciones "bonitas" dan error 404 si Apache no tiene permitido leer el fichero .htaccess?*
 
-- Porque si Apache no lee el fichero **.htaccess**, no sabe aplicar las reglas de reescritura para redirigir las URL hacia el fichero principal `index.php`, provocando que el servidor web responda que la página no existe (error 404).
+-Porque si Apache no lee el fichero **.htaccess**, no sabe aplicar las reglas de reescritura para redirigir las URL hacia el fichero principal `index.php`, provocando que el servidor web responda que la página no existe (error 404).
 
 ---
 
@@ -349,7 +368,7 @@ sudo systemctl restart apache2
 
 ### ¿Qué pasa si MariaDB se para? ###
 
-Detenemos deliberadamente MariaDB para ver qué ocurre en el sitio web:
+Detenemos MariaDB para ver qué ocurre en el sitio web:
 ```bash
 sudo systemctl stop mariadb
 ```
@@ -365,17 +384,17 @@ sudo systemctl start mariadb
 systemctl is-active mariadb
 ```
 
-*Captura del error en el navegador y del servicio recuperado:*
+*Captura del error en el navegador y de la web recuperada:*
 
-![Captura WordPress 9A](./imagenes/WordPress-9A.png)
-![Captura WordPress 9B](./imagenes/WordPress-9B.png)
+![Captura WordPress 9A](./imagenes/Word-9A.png)
+![Captura WordPress 9B](./imagenes/Word-9B.png)
 
 **Pregunta 9:**
 
 *Cuando WordPress muestra "Error al establecer una conexión con la base de datos", ¿qué dos cosas comprobarías y en qué orden?*
 
-- 1º Usaría el comando **systemctl is-active mariadb** para ver si el servicio MariaDB está arrancado o se ha parado.
-- 2º Probaría a entrar manualmente con **mariadb -u wp_user -p wordpress** para comprobar si el usuario y la contraseña siguen siendo válidos.
+- 1. Usaría el comando **systemctl is-active mariadb** para ver si el servicio MariaDB está arrancado o se ha parado.
+- 2. Probaría a entrar manualmente con **mariadb -u wp_user -p wordpress** para comprobar si el usuario y la contraseña siguen siendo válidos.
 
 ---
 
@@ -392,7 +411,8 @@ sudo mariadb wordpress -e "SHOW TABLES;"
 ```
 
 Tendra este estado:
-| Pieza | del LAMP | Programa Estado |
+
+| Pieza | Programa | Estado |
 |------|-------|------|
 | Linux | Ubuntu 24.04 | Instalado |
 | Apache | Apache2 (un sitio) | Funcionando |
