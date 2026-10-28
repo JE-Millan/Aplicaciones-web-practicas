@@ -1,4 +1,4 @@
-# PRACTICA INSTALACION WORDPRESS # 
+# PRACTICA INSTALACION WORDPRESS #
 **Aplicaciones web**
 
 ### Nombre: ### 
@@ -41,13 +41,14 @@ PHP 8.3.6 (cli) (built: Apr 15 2024 19:21:47) (NTS)
 
 *Captura de la respuesta de los comandos:*
 
-![Captura WordPress 1](./imagenes/WordPress-1.png)
+![Captura WordPress 1](./imagenes/Word-1.png)
+![Captura WordPress 1B](./imagenes/Word-1B.png)
 
 **Pregunta 1:**
 
 *¿Qué dos "puertas" (programas y puertos) usas para trabajar con el servidor en esta práctica y para qué sirve cada una?*
 
--Usamos la puerta **SSH (puerto 22)** con la terminal para administrar el servidor (instalar paquetes, copiar ficheros y configurar texto), y la puerta **HTTP (puerto 80)** con el navegador para ver y usar la parte gráfica de WordPress.
+--Uno de ellos es SSH en puerto 22 por la terminal, sirve para administrar el servidor como por ejemplo instalar, copiar o configurar texto, y el otro es HTTP en puerto 80 en el navegador, sirve para usar WordPress para ver la web y el panel de control gráfico.
 
 ---
 
@@ -77,13 +78,15 @@ grep DocumentRoot /etc/apache2/sites-enabled/000-default.conf
 
 *Captura de los comandos y de la página de Apache:*
 
-![Captura WordPress 2A](./imagenes/WordPress-2A.png)
+![Captura WordPress 2A](./imagenes/Word-2A.png)
+![Captura WordPress 2B](./imagenes/Word-2B.png)
+![Captura WordPress 2C](./imagenes/Word-2C.png)
 
 **Pregunta 2:**
 
 *¿Qué diferencia hay entre desactivar un sitio con a2dissite y borrar sus ficheros? ¿Por qué ahora ves la página por defecto de Apache y antes veías sitio1?*
 
--Desactivar un sitio con **a2dissite** quita la configuración activa para que Apache deje de servirlo, pero mantiene los ficheros guardados en el disco por si nos hacen falta. Ahora se ve la página por defecto porque es el único sitio habilitado apuntando a la carpeta `/var/www/html`.
+-Lo que hace a2dissite es desactivar el fichero pero no es lo mismo que borrar porque puedes volver a activarlo, pero si lo borras no puedes volver a activarlo sin mas. Ahora se ve la pagina por defecto de apache porque se ha descativado sitio1.conf y sitio2.conf.
 
 ---
 
@@ -99,16 +102,16 @@ sudo mariadb
 Escribimos las siguientes órdenes:
 ```bash
 CREATE DATABASE wordpress;
-CREATE USER 'wp_user'@'localhost' IDENTIFIED BY '********';
+CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'ClaveSegura_2026';
 GRANT ALL ON wordpress.* TO 'wp_user'@'localhost';
 ```
 
->Cada orden responderá de la siguiente forma:
+>Cada orden responderá esto:
 ```bash
-Query OK, 1 row affected (0.000 sec)
+Query OK
 ```
 
-Salimos con `exit` y comprobamos que el usuario funciona conectándonos con él:
+Salimos con `exit` y comprobamos que el usuario funciona conectándonos con el:
 ```bash
 mariadb -u wp_user -p wordpress
 ```
@@ -395,13 +398,3 @@ Tendra este estado:
 | PHP | PHP 8.3 | Funcionando |
 | WordPress | Instalado en /var/www/html | Funcionando y listo |
 
-
-
-❓ ¿Qué dos "puertas" (programas y puertos) usas para trabajar con el servidor en esta práctica y para qué sirve cada una?
-
--Uno de ellos es SSH en puerto 22 por la terminal, sirve para administrar el servidor como por ejemplo instalar, copiar o configurar texto, y el otro es HTTP en puerto 80 en el navegador, sirve para usar WordPress para ver la web y el panel de control gráfico.
-
-
-❓ ¿Qué diferencia hay entre desactivar un sitio con a2dissite y borrar sus ficheros? ¿Por qué ahora ves la página por defecto de Apache y antes veías sitio1?
-
--Lo que hace a2dissite es desactivar el fichero pero no es lo mismo que borrar porque puedes volver a activarlo, pero si lo borras no puedes volver a activarlo sin mas. Ahora se ve la pagina por defecto de apache porque se ha descativado sitio1.conf y sitio2.conf.
