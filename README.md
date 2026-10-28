@@ -13,5 +13,5 @@ Codigos de Aplicaciones web
 | 2 | Practica Apache | [memoria practica apache](./apache/practica-apache.md) |
 | 3 | Practica MariaDB | [memoria practica mariadb](./practica-mariadb/practica-mariadb.md) |
 | 4 | Practica WordPress | [memoria practica wordpress](./Practica-WordPress/practica-wordpress.md) |
-| 4 | CSS y Flexbox | Todavia no esta realizada |
-| 5 | Formularios web | Todavia no esta realizada |
+| 5 | CSS y Flexbox | Todavia no esta realizada |
+| 6 | Formularios web | Todavia no esta realizada |
