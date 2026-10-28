@@ -393,8 +393,8 @@ systemctl is-active mariadb
 
 *Cuando WordPress muestra "Error al establecer una conexión con la base de datos", ¿qué dos cosas comprobarías y en qué orden?*
 
-- 1. Usaría el comando **systemctl is-active mariadb** para ver si el servicio MariaDB está arrancado o se ha parado.
-- 2. Probaría a entrar manualmente con **mariadb -u wp_user -p wordpress** para comprobar si el usuario y la contraseña siguen siendo válidos.
+- 1º Usaría el comando **systemctl is-active mariadb** para ver si el servicio MariaDB está arrancado o se ha parado.
+- 2º Probaría a entrar manualmente con **mariadb -u wp_user -p wordpress** para comprobar si el usuario y la contraseña siguen siendo válidos.
 
 ---
 
