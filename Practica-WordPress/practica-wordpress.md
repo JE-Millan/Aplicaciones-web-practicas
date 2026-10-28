@@ -126,21 +126,23 @@ MariaDB [wordpress]>
 
 Tabla con la función de cada cosa:
 
-| Elemento | Nombre | Funcion |
-|-----|------|------|
-| Base de datos | wordpress | El armario donde WordPress guardara todos sus datos |
-| Usuario | wp_user | La llave que utilizara WordPress para acceder |
-| Permisos | GRANT ALL | Le da permisos totales sobre la base wordpress y ninguna otra |
+| Orden | Que hace |
+|-----|------|
+| CREATE DATABASE wordpress; | El armario donde WordPress guardara todos sus datos |
+| CREATE USER 'wp_user'@'localhost' IDENTIFIED BY '...'; | La llave que utilizara WordPress para acceder |
+| GRANT ALL ON wordpress.* TO 'wp_user'@'localhost'; | Le da permisos totales sobre la base wordpress y ninguna otra |
 
 *Captura de las órdenes y de la entrada con wp_user:*
 
-![Captura WordPress 3](./imagenes/WordPress-3.png)
+![Captura WordPress 3A](./imagenes/Word-3A.png)
+![Captura WordPress 3B](./imagenes/Word-3B.png)
+
 
 **Pregunta 3:**
 
 *¿Por qué crees que WordPress usa su propio usuario wp_user con permiso solo sobre su base y no el usuario root de MariaDB?*
 
--Por seguridad. Si un atacante consiguiera acceder a la web de WordPress, solo tendría acceso a su base de datos y no a la totalidad del servidor MariaDB.
+-Por seguridad, si un atacante consiguiera acceder a la web de WordPress, solo tendría acceso a su base de datos y no a la totalidad del servidor MariaDB.
 
 ---
 
